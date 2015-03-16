@@ -37,7 +37,7 @@ file_put_contents($config['dir'] . $article_id . '.js', trim($shortcode));
 echo $shortcode;
 
 // Build the remote-directory directory string
-$remote_dir = substr($article_id, 0, 1) . '/' . substr($article_id, 1, 1) . '/' . substr($article_id, 2, 1) . '/';
+$remote_dir = substr($article_id, 0, 1) . '/' . substr($article_id, 1, 1) . '/' . substr($article_id, 2, 1) . '/' . substr($article_id, 3, 1) . '/' . substr($article_id, 4, 1) . '/';
 
 // FTP it to extras
 require('/var/www/lib/class.ftp.php');
