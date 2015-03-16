@@ -36,14 +36,23 @@ $shortcode =  file_get_contents('http://api.bit.ly/shorten?version=2.0.1&format=
 file_put_contents($config['dir'] . $article_id . '.js', trim($shortcode));
 echo $shortcode;
 
+// Build the remote-directory directory string
+$remote_dir = substr($article_id, 0, 1) . '/' . substr($article_id, 1, 1) . '/' . substr($article_id, 2, 1) . '/';
+
 // FTP it to extras
 require('/var/www/lib/class.ftp.php');
 $error_display = FALSE;
 $file_directory_local = '/var/www/vhosts/denverpostplus.com/httpdocs/app/shortcodes/' . $config['dir'];
-$file_directory_remote = '/DenverPost/cache/shortcodes/denverpost/NGPS/';
+$file_directory_remote = '/DenverPost/cache/shortcodes/denverpost/NGPS/_/' . $remote_dir;
 $file_format = 'js';
 $file_mode = FTP_ASCII;
 $file_name = $article_id;
+// First create the directories
+$ftp = new ftp();
+$ftp->mkdir($file_directory_remote);
+$ftp->ftp_connection_close();
+
+// Now put the file
 $ftp = new ftp();
 $ftp->file_put($file_name, $file_directory_local, $file_format, $error_display, $file_mode, $file_directory_remote);
 $ftp->ftp_connection_close();
