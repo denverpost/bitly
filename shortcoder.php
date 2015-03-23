@@ -43,7 +43,7 @@ $remote_dir = substr($article_id, 0, 1) . '/' . substr($article_id, 1, 1) . '/' 
 require('/var/www/lib/class.ftp.php');
 $error_display = FALSE;
 $file_directory_local = '/var/www/vhosts/denverpostplus.com/httpdocs/app/shortcodes/' . $config['dir'];
-$file_directory_remote = '/DenverPost/cache/shortcodes/denverpost/NGPS/_/' . $remote_dir;
+$file_directory_remote = '/cache/shortcodes/denverpost/NGPS/_/' . $remote_dir;
 $file_format = 'js';
 $file_mode = FTP_ASCII;
 $file_name = $article_id;
